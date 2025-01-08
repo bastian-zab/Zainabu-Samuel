@@ -1,0 +1,66 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+<BaseLayout sideBarActiveItemID="home">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .slider-container {
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+
+        .slider {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .slider img {
+            width: 100%;
+            height: auto;
+        }
+    </style>
+
+
+<div class="slider-container">
+    <div class="slider">
+        <img src="blender1.webp" alt="Image 1">
+        <img src="blender1a.webp" alt="Image 2">
+        <img src="blender1b.webp" alt="Image 3">
+    </div>
+</div>
+
+<script>
+    let index = 0;
+
+    function showSlide() {
+        const slides = document.querySelectorAll('.slider img');
+        const totalSlides = slides.length;
+
+        // Hide all images
+        for (let slide of slides) {
+            slide.style.display = 'none';
+        }
+
+        // Show the current image
+        slides[index].style.display = 'block';
+
+        // Update the index to the next slide
+        index = (index + 1) % totalSlides;  // Loop back to the first slide after the last one
+    }
+
+    // Start the slider
+    setInterval(showSlide, 3000); // Change image every 3 seconds
+    showSlide(); // Show the first slide initially
+</script>
+
+</body>
+</html>
+</BaseLayout>
